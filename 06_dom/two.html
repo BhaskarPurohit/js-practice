@@ -7,13 +7,24 @@
 </head>
 <body>
     <h1>Learn Async</h1>
-    <button id="stop">Stop</button>
+    <button id="stop" onclick={}>Stop</button>
 
 </body>
 <script>
     const nameCall = ()=>{
         console.log("Bhaskar");
     }
+    const changeHeading = ()=>{
+        document.querySelector('h1').innerHTML = "My Name is Slim Shady"
+    }
     setTimeout(nameCall,2000)
+    let changeMe = setTimeout(changeHeading, 3000)
+
+    document.querySelector("#stop").addEventListener("click",()=>{
+        clearTimeout(changeMe)
+        console.log("stopped");
+    })
+
+   
 </script>
 </html>

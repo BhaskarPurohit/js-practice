@@ -11,19 +11,36 @@
     <button id="stop">STOP</button>
 </body>
 <script>
-    const callMe = (str)=>{
-        console.log(str +" call me baby", Date.now())
-    }
-    // const intervalId = setInterval(callMe, 2000, "hi baby")
+    // const callMe = (str)=>{
+    //     console.log(str +" call me baby", Date.now())
+    // }
+    // // const intervalId = setInterval(callMe, 2000, "hi baby")
 
-    // clearInterval(intervalId)
+    // // clearInterval(intervalId)
 
-    document.querySelector("#start").addEventListener("click",intervalId=>{
-        setInterval(callMe, 2000, "hi baby")
-    })
+    // document.querySelector("#start").addEventListener("click",intervalId=>{
+    //     setInterval(callMe, 2000, "hi baby")
+    // })
 
-    document.querySelector("#stop").addEventListener('click',
-         clearInterval(intervalId)
-    )
+    // document.querySelector("#stop").addEventListener('click',
+    //      clearInterval(intervalId)
+    // )
+
+     const fetchData = ()=>{
+        fetch("https://api.coindesk.com/v1/bpi/currentprice.json").then((response)=>{
+            if(!response.ok){
+                throw new Error('Http error')
+            }
+            return response.json()
+        }).then((data)=>{
+            const priceData = data.bpi
+            const usdPrice = priceData.USD.rate
+
+            console.log(`this is USD price ${usdPrice}`)
+        })
+     }
+     fetchData()
+
+
 </script>
 </html>
